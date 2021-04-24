@@ -17,8 +17,8 @@
         <button
           type="submit"
           class="btn"
-          :class="!isUsernameValid || !password ? 'disabled' : null"
-          :disabled="!isUsernameValid || !password || !nickname"
+          :class="isValidForm ? 'disabled' : null"
+          :disabled="isValidForm"
         >
           회원 가입
         </button>
@@ -45,6 +45,9 @@ export default {
   computed: {
     isUsernameValid() {
       return validateEmail(this.username);
+    },
+    isValidForm() {
+      return !this.isUsernameValid || !this.password || !this.nickname;
     },
   },
   methods: {
